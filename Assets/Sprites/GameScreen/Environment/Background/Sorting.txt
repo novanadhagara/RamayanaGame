@@ -1,0 +1,9 @@
+Parallax Background : 
+1. Background
+2. Far Tree
+3. Fog Small
+3. Close Tree
+4. Fog Medium
+5. Sun Light
+6. Terrain Tree
+7. Bush
