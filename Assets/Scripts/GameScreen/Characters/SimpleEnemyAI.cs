@@ -180,8 +180,8 @@ public class SimpleEnemyAI : MonoBehaviour {
 		} else { //JIKA BEGINNER DAN UNDEFINED
 			//points
 			//firerate
-			MaxRange = 5;
-			Speed = 0.5f;
+			//MaxRange = 5;
+			//Speed = 0.5f;
 		}
 	}
 }

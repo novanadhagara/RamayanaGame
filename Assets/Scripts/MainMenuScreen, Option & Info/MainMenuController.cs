@@ -68,6 +68,8 @@ public class MainMenuController : MonoBehaviour {
 		Invoke ("ToLevelScreen", 1f);
 	}
 	void ToLevelScreen(){
+
+        PlayerPrefs.DeleteKey("indexLv");
 		Application.LoadLevel("LevelScreen");
 	}
 	

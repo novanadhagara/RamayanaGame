@@ -15,16 +15,69 @@ public class LevelScreenController : MonoBehaviour {
 	private int storyCounter;
 	private bool textShown;
 
+    public GameObject[] levels;
+    public int indexLevels;
 
-	
-	void Awake (){
+    void ReviewLevelBoard() {
+        if (indexLevels > levels.Length - 1)
+        {
+            indexLevels = levels.Length - 1;
+        }
+        int i = 0;
+        while (i < levels.Length - 1)
+        {
+
+            levels[i].SetActive(false);
+            i++;
+        }
+        levels[indexLevels].SetActive(true);
+    }
+
+    public void NextLevelBoard() {
+        indexLevels++;
+        if (indexLevels > levels.Length-1) {
+            indexLevels = levels.Length - 1;
+        }
+        int i = 0;
+        while (i < levels.Length-1) {
+           
+            levels[i].SetActive(false);
+            i++;
+        }
+        PlayerPrefs.SetInt("indexLv", indexLevels);
+        levels[indexLevels].SetActive(true);
+    }
+
+    public void PrevLevelBoard()
+    {
+        indexLevels--;
+        if (indexLevels < 0)
+        {
+            TransitionOut();
+            Invoke("ToMainMenuScreen", 1f);
+            indexLevels = 0;
+            return;
+        }
+
+        int i = 0;
+        while (i < levels.Length)
+        {
+           levels[i].SetActive(false);
+            i++;
+        }
+        levels[indexLevels].SetActive(true);
+        PlayerPrefs.SetInt("indexLv", indexLevels);
+
+    }
+
+    void Awake (){
 		textShown = false;
 
 		loadingText.SetActive (false);
 		StoryBoard.SetActive (false);
 		nextButton.SetActive (false);
 		storyText.SetActive (false);
-
+    
 		storyCounter = 0;
 		/*int i;
 		for (i = 0; i < StoryImages.Length; i++) {
@@ -35,6 +88,10 @@ public class LevelScreenController : MonoBehaviour {
 			}
 		}*/
 		ShowStoryImage ();
+        if (PlayerPrefs.HasKey("indexLv")) {
+            indexLevels = PlayerPrefs.GetInt("indexLv");
+        }
+        ReviewLevelBoard();
 	}
 	
 	public void Start(){
@@ -104,8 +161,20 @@ public class LevelScreenController : MonoBehaviour {
 		Invoke ("ShakeOff", 0.5f);
 	}
 
+    public void GoToLevel0()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel0", 1f);
+    }
+    void Tolevel0()
+    {
+        Application.LoadLevel("Level0");
+    }
+
+
 	public void GoToLevel1(){
-		ShowStoryBoardOff();
+		TransitionOut();
 		loadingText.SetActive(true);
 		Invoke ("ToLevel1",1f);
 	}
@@ -185,6 +254,85 @@ public class LevelScreenController : MonoBehaviour {
     {
         Application.LoadLevel("Level8");
     }
+
+    public void GoToLevel9()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel9", 1f);
+    }
+    void ToLevel9()
+    {
+        Application.LoadLevel("Level9");
+    }
+
+    public void GoToLevel10()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel10", 1f);
+    }
+    void ToLevel10()
+    {
+        Application.LoadLevel("Level10");
+    }
+
+    public void GoToLevel11()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel11", 1f);
+    }
+    void ToLeve11()
+    {
+        Application.LoadLevel("Level11");
+    }
+
+    public void GoToLevel12()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel12", 1f);
+    }
+    void ToLevel12()
+    {
+        Application.LoadLevel("Level12");
+    }
+
+    public void GoToLevel13()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel13", 1f);
+    }
+    void ToLevel13()
+    {
+        Application.LoadLevel("Level13");
+    }
+
+    public void GoToLevel14()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel4", 1f);
+    }
+    void ToLevel14()
+    {
+        Application.LoadLevel("Level14");
+    }
+
+    public void GoToLevel15()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel15", 1f);
+    }
+    void ToLevel15()
+    {
+        Application.LoadLevel("Level15");
+    }
+
+
 
     public void ShowStoryImage(){
 		//check what story should be showen
