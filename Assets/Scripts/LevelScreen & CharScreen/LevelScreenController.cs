@@ -152,24 +152,26 @@ public class LevelScreenController : MonoBehaviour {
 			storyCounter++;
 
 			if (storyCounter >= 8) {
-				//ShowStoryBoardOff();
-				//loadingText.SetActive(true);
-				GoToLevel1();
+				ShowStoryBoardOff();
+				loadingText.SetActive(true);
+				GoToLevel();
 			}
 		}
 		ShowStoryImage ();
 		Invoke ("ShakeOff", 0.5f);
 	}
 
-    public void GoToLevel0()
+    public void GoToLevel()
     {
+       
+       // ShowStoryBoard();
         TransitionOut();
         loadingText.SetActive(true);
-        Invoke("ToLevel0", 1f);
+        Invoke("ToLevel", 1f);
     }
-    void Tolevel0()
+    void Tolevel()
     {
-        Application.LoadLevel("Level0");
+        Application.LoadLevel("Level");
     }
 
 
