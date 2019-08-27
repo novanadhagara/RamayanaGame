@@ -29,6 +29,7 @@ public class GameOverController : MonoBehaviour {
 	}
 
 	public void TransitionOut(){
+
 		starsBoardAnimator.SetBool("BounceOut",true);
 		starsBoardAnimator.SetBool("BounceIn",false);
 
@@ -96,8 +97,9 @@ public class GameOverController : MonoBehaviour {
 	public void GoToMainMenuScreen(){
 		PlayerPrefs.SetString("IsGameOver","false");
 		PlayerPrefs.SetString("IsPaused", "false");
-		TransitionOut ();
+		TransitionOut();
 		Invoke ("ToMainMenuScreen", 1f);
+
 	}
 	void ToMainMenuScreen(){
 		Application.LoadLevel ("MainMenuScreen");
@@ -117,6 +119,7 @@ public class GameOverController : MonoBehaviour {
 
 	public void GoToLevelMenu(){
 		PlayerPrefs.SetString("IsGameOver","false");
+		PlayerPrefs.SetString("IsPaused", "false");
 		TransitionOut ();
 		Invoke ("ToLevelMenu", 1f);
 	}

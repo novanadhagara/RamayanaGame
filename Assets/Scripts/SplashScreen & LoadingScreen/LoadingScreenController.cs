@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoadingScreenController : MonoBehaviour {
 	private float timer = 0;
@@ -13,12 +14,13 @@ public class LoadingScreenController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.eulerAngles += new Vector3(0, 0, -2) ;//* Time.deltaTime;
+		transform.eulerAngles += new Vector3(0, 0, -2) * Time.deltaTime;
 		timer += Time.deltaTime;
 		
 		if (timer >= 3) {
 			//move to another scene
-			Application.LoadLevel("MainMenuScreen");
+			SceneManager.LoadScene("MainMenuScreen");
+			//Application.LoadLevel("MainMenuScreen");
 		}
 		
 		if (transform.localScale.x <= 1) {

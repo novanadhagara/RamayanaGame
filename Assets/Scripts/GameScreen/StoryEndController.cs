@@ -3,21 +3,40 @@ using System.Collections;
 
 public class StoryEndController : MonoBehaviour {
 
-	public GameObject StoryBoard, NextButton;
+    public GameObject StoryBoard, NextButton;
 
-	public Animator StoryBoardAnim, NextButtonAnim;
+    public Animator StoryBoardAnim, NextButtonAnim;
+
+    public bool isDeadPlayer;
+
+    public void GetDeadPlayerStatus(bool status){
+        isDeadPlayer = status;
+    }
 
 	void Awake(){
+        //CheckPoint.SetActive(false);
 		StoryBoard.SetActive(false);
 		NextButton.SetActive(false);
 	}
 
 	public void StoryEndIn(){
-		StoryBoard.SetActive(true);
-		NextButton.SetActive(true);
-
-		StoryBoardAnim.SetBool("BounceIn",true);
-		NextButtonAnim.SetBool("BounceIn",true);
+		
+        if (!isDeadPlayer)
+        {
+            NextButton.SetActive(true);
+               if (StoryBoard) {
+                  
+                   StoryBoard.SetActive(true);                   
+                   StoryBoardAnim.SetBool("BounceIn", true);
+               }
+            
+              NextButtonAnim.SetBool("BounceIn", true);
+           }
+        else {
+            GameObject gameovercontroller = GameObject.Find("GameOverController");
+           gameovercontroller.GetComponent<GameOverController>().GoToLevelMenu();
+        }
+        
 	}
 
 	public void StoryEndOut(){
@@ -26,5 +45,5 @@ public class StoryEndController : MonoBehaviour {
 
 		StoryBoardAnim.SetBool("BounceOut",true);
 		NextButtonAnim.SetBool("BounceOut",true);
-	}
+    }
 }

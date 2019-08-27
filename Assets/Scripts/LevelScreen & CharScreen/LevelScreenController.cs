@@ -4,11 +4,11 @@ using System.Collections;
 
 public class LevelScreenController : MonoBehaviour {
 
-	public GameObject backButton, nextButton, levelBoard, loadingText, storyText;
+	public GameObject backButton, nextButton, levelBoard, levelBoard2, loadingText, storyText;
 	public GameObject StoryBoard;
 	public GameObject[] StoryImages;
 
-	public Animator backButtonAnimator, nextButtonAnimator, levelBoardAnimator, storyBoardAnimator;
+	public Animator backButtonAnimator, nextButtonAnimator, levelBoardAnimator,levelBoard2Animator, storyBoardAnimator;
 	public Text storyTextFront, storyTextShadow;
 
 	private int Level;
@@ -105,9 +105,11 @@ public class LevelScreenController : MonoBehaviour {
 	public void TransitionOut(){
 		backButtonAnimator.SetBool ("BounceIn", false);
 		levelBoardAnimator.SetBool ("BounceIn", false);
+        levelBoard2Animator.SetBool("BounceIn", false);
 		
 		backButtonAnimator.SetBool ("BounceOut", true);
 		levelBoardAnimator.SetBool ("BounceOut", true);
+        levelBoard2Animator.SetBool("BounceOut", true);
 	}
 	
 	public void GoToMainMenuScreen(){
@@ -285,7 +287,7 @@ public class LevelScreenController : MonoBehaviour {
         loadingText.SetActive(true);
         Invoke("ToLevel11", 1f);
     }
-    void ToLeve11()
+    void ToLevel11()
     {
         Application.LoadLevel("Level11");
     }
@@ -316,7 +318,7 @@ public class LevelScreenController : MonoBehaviour {
     {
         TransitionOut();
         loadingText.SetActive(true);
-        Invoke("ToLevel4", 1f);
+        Invoke("ToLevel14", 1f);
     }
     void ToLevel14()
     {
@@ -334,6 +336,16 @@ public class LevelScreenController : MonoBehaviour {
         Application.LoadLevel("Level15");
     }
 
+    public void GoToLevel16()
+    {
+        TransitionOut();
+        loadingText.SetActive(true);
+        Invoke("ToLevel16", 1f);
+    }
+    void ToLevel16()
+    {
+        Application.LoadLevel("Level16");
+    }
 
 
     public void ShowStoryImage(){

@@ -178,7 +178,14 @@ public class Player : MonoBehaviour, ITakeDamage {
 		if (transform.position.y <= -5) {
 			Die(); //SHOULD CHECK IT FIRST
 			if(IsDead){
-				Destroy (gameObject);
+                //sebelum mati nyatakan alau player mati di storyendcontroller agar nggak nampilin story end
+                GameObject l = GameObject.Find("Story End Controller");
+                if (l) {
+                    l.GetComponent<StoryEndController>().GetDeadPlayerStatus(true);
+                }
+                
+
+                Destroy (gameObject);
 			}
 		}
 

@@ -2,14 +2,26 @@
 using System.Collections;
 
 public class SoundController : MonoBehaviour {
-
-	public GameObject BackgroundMusic;
-	private AudioSource source;
+	public AudioClip[] BGM;
+	private AudioSource audioSource;
 
 	void Awake(){
-		GameObject instance = Instantiate (BackgroundMusic, Vector3.zero, Quaternion.identity) as GameObject;
-		source = instance.GetComponent<AudioSource> ();
-		source.Play ();
-		DontDestroyOnLoad (instance);
+		DontDestroyOnLoad(this.gameObject);
+
+        audioSource = GetComponent<AudioSource>();
+        if(!audioSource.playOnAwake){
+            PlayRandom(BGM);
+        }
 	}
+
+	 void LateUpdate() {
+        if(!audioSource.isPlaying){
+            PlayRandom(BGM);
+        }
+    }
+	
+	 void PlayRandom(AudioClip[] clips){
+        audioSource.clip = clips[Random.Range(0, clips.Length)];
+        audioSource.Play();
+    }
 }
